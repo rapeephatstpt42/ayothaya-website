@@ -537,6 +537,7 @@ function place(b,i){
 }
 const txt=mode=>`**Ayothaya · ${MODES[mode].t}** (${warInfo(mode).date} ${warInfo(mode).time})${T[mode+'_title']?'\n'+T[mode+'_title']:''}\n`+['m','s'].map(b=>`\n__${MODES[mode][b]}__\n`+[...Array(8)].map((_,p)=>`${pn(b,p)}: `+A[mode][b].slice(p*5,p*5+5).map((id,k)=>id?mem(id).n+(k===0?' ★':'')+(lvSet(mode).has(id)?' ('+tl('ลา')+')':''):'-').join(', ')).join('\n')).join('\n');
 function show(h){$('#ov').innerHTML=`<div class="box"><button class="mini" data-act="close">${tl('ปิด')}</button>${h}</div>`;$('#ov').hidden=false}
+$('#ov').addEventListener('click',e=>{if(e.target.id!=='ov')return;const f=[...e.target.querySelectorAll('input:not([type=button]):not([type=hidden]):not([type=checkbox]):not([type=radio]),textarea')].some(i=>i.value.trim());if(f&&!confirm(tt('ต้องการยกเลิกใช่ไหม? ข้อมูลที่กรอกไว้จะหายไป','Cancel? What you typed will be lost.')))return;e.target.hidden=true});
 function warInfo(mode){const w=warDates().find(x=>x.mode===mode),c=SCHED[mode];return{date:w?dlabel(w.date):'',time:p2(c.s[0])+':'+p2(c.s[1])+'–'+p2(c.e[0])+':'+p2(c.e[1])+' (GMT+7)'}}
 async function img(mode){
  if(sb){try{await load()}catch(e){}}
@@ -611,7 +612,7 @@ async function img(mode){
  const u=c.toDataURL('image/png');
  show(`<p class="sub">${tl('กดค้างที่รูป (หรือกดปุ่มบันทึก) แล้วนำไปโพสต์ใน Discord')}</p><a class="mini" download="ayothaya-${mode}.png" href="${u}">${tl('บันทึกรูป')}</a><img alt="${tl('ประกาศปาร์ตี้')}" src="${u}">`);
 }
-function loginBox(){show(`<h3 style="margin:12px 0 0">${tl('เข้าสู่ระบบ Officer')}</h3><p class="sub">${tl('สำหรับ Guild Master และ Vice Guild Master เท่านั้น')}</p><input id="em" type="email" placeholder="${tl('อีเมล')}" autocomplete="username"><input id="pw" type="password" placeholder="${tl('รหัสผ่าน')}" autocomplete="current-password"><div class="err" id="le"></div><button class="mini" data-act="dologin">${tl('เข้าสู่ระบบ')}</button>`)}
+function loginBox(){show(`<h3 style="margin:12px 0 0">${tl('เข้าสู่ระบบ Officer')}</h3><p class="sub">${tl('สำหรับ Guild Master และ Vice Guild Master เท่านั้น')}</p><input id="em" type="email" placeholder="${tl('อีเมล')}" autocomplete="username"><input id="pw" type="password" placeholder="${tl('รหัสผ่าน')}" autocomplete="current-password"><div class="err" id="le"></div><button class="mini" data-act="dologin">${tl('เข้าสู่ระบบ')}</button>`);['#em','#pw'].forEach(q=>$(q).addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();dologin()}}))}
 async function dologin(){
  const r=await sb.auth.signInWithPassword({email:$('#em').value.trim(),password:$('#pw').value});
  if(r.error){const m=(r.error.message||'').toLowerCase();

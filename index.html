@@ -958,7 +958,7 @@ const trSeller=l=>{const sl=l&&l.s,nm=sl&&sl.ign?esc(sl.ign):'---',av=sl&&safeUr
  else{b=l&&l.did?`<a class="tc-ct" href="https://discord.com/users/${encodeURIComponent(l.did)}" target="_blank" rel="noopener">${tt('ติดต่อผู้ขาย','Contact seller')}</a>`:`<button class="tc-ct" data-act="contact" data-id="${id}">${tt('ติดต่อผู้ขาย','Contact seller')}</button>`;if(edit)b+=`<button class="tc-ct sm gh" data-act="lsdel" data-id="${id}">${tt('ลบ','Delete')}</button>`}
  return `<div class="tc-f">${av}<span class="tc-sn">${nm}</span>${b}</div>`};
 const TRSLOT={Headwear:'#35d0e6',Mouthwear:'#ff8a4c',Backwear:'#a78bfa',Facewear:'#4ade80'};
-const trCard=(it,l)=>{const mv=it.k==='mvp',ht=it.k==='hat',c=mv?'#e0509b':ht?(TRSLOT[it.slot]||'#8b92a3'):(TRLV[it.lv]||'#8b92a3');return `<article class="tc" style="--c:${c}"><div class="tc-h"><img src="${TRIMG[it.id]}" alt=""><div class="tc-i"><b class="tc-n">${it.n}</b><span class="tc-lv">${mv||ht?it.slot:'Lv.'+it.lv}</span>${trPrice(l?l.price:it.p)}${l&&l.refine!=null?`<span class="tc-rf">${mv?'Awakening Lv.'+l.refine:'Refine +'+l.refine}</span>`:''}</div></div>${it.cl?`<p class="tc-cl">${tt('อาชีพแนะนำ','Recommended')}: ${it.cl}</p>`:''}<ul class="tc-s">${it.b.map(x=>`<li>${trT(x)}</li>`).join('')}</ul>${mv?'<p class="tc-aw">Awakening Effect</p>':''}${it.r.length?`<ul class="tc-r">${it.r.map(([l,x])=>`<li>${mv?'Lv.'+l+': ':tt('เมื่อ Refine +'+l+', ','At Refine +'+l+', ')}${trT(x)}</li>`).join('')}</ul>`:''}${trSeller(l)}</article>`};
+const trCard=(it,l)=>{const mv=it.k==='mvp',ht=it.k==='hat',c=mv?'#e0509b':ht?(TRSLOT[it.slot]||'#8b92a3'):(TRLV[it.lv]||'#8b92a3');return `<article class="tc" style="--c:${c}"><div class="tc-h"><img src="${TRIMG[it.id]}" alt=""><div class="tc-i"><b class="tc-n">${it.n}</b><span class="tc-lv">${mv||ht?it.slot:'Lv.'+it.lv}</span>${trPrice(l?l.price:it.p)}</div></div>${it.cl?`<p class="tc-cl">${tt('อาชีพแนะนำ','Recommended')}: ${it.cl}</p>`:''}<ul class="tc-s">${it.b.map(x=>`<li>${trT(x)}</li>`).join('')}</ul>${mv?'<p class="tc-aw">Awakening Effect</p>':''}${it.r.length?`<ul class="tc-r">${it.r.map(([l,x])=>`<li>${mv?'Lv.'+l+': ':tt('เมื่อ Refine +'+l+', ','At Refine +'+l+', ')}${trT(x)}</li>`).join('')}</ul>`:''}${trSeller(l)}</article>`};
 const TRIDX={};Object.values(TRITEMS).flat().forEach(i=>{TRIDX[i.id]=i});
 const trCat=it=>it.k||'acc';
 let listings=[],lsErr='',lsLoaded=false,gateNext='';
@@ -1030,24 +1030,22 @@ async function postLogin(){
 // ----- ฟอร์มลงขาย / ปิดรายการ -----
 function sellBox(){
  if(!gate('sell'))return;
- show(`<h3 style="margin:12px 0 4px">${tl('ลงขายสินค้า')}</h3><label for="sl-c">${tt('หมวด','Category')}</label><select id="sl-c">${TRCATS.slice(1).map(([k,a,b])=>`<option value="${k}">${tt(a,b)}</option>`).join('')}</select><label for="sl-i">${tt('สินค้า','Item')}</label><div class="sl-pv"><img id="sl-img" alt=""><select id="sl-i"></select></div><label for="sl-r" id="sl-rl"></label><input id="sl-r" type="number" min="0" max="20" inputmode="numeric" placeholder="0-20"><label for="sl-p">${tt('ราคา (บาท)','Price (THB)')}</label><input id="sl-p" type="text" inputmode="numeric" autocomplete="off" placeholder="${tt('เช่น 150000','e.g. 150000')}"><p class="sub" id="sl-usd" style="margin:0"></p><div class="err" id="sl-e"></div><button class="mini" data-act="sellsave">${tt('ลงขาย','List item')}</button>`);
+ show(`<h3 style="margin:12px 0 4px">${tl('ลงขายสินค้า')}</h3><label for="sl-c">${tt('หมวด','Category')}</label><select id="sl-c">${TRCATS.slice(1).map(([k,a,b])=>`<option value="${k}">${tt(a,b)}</option>`).join('')}</select><label for="sl-i">${tt('สินค้า','Item')}</label><div class="sl-pv"><img id="sl-img" alt=""><select id="sl-i"></select></div><label for="sl-p">${tt('ราคา (บาท)','Price (THB)')}</label><input id="sl-p" type="text" inputmode="numeric" autocomplete="off" placeholder="${tt('เช่น 150000','e.g. 150000')}"><p class="sub" id="sl-usd" style="margin:0"></p><div class="err" id="sl-e"></div><button class="mini" data-act="sellsave">${tt('ลงขาย','List item')}</button>`);
  slFill('c');
 }
 function slFill(w){
  const c=$('#sl-c'),i=$('#sl-i');if(!c||!i)return;
  if(w==='c')i.innerHTML=(TRITEMS[c.value]||[]).map(it=>`<option value="${esc(it.id)}">${esc(it.n)}${it.lv?' · Lv.'+it.lv:''}${c.value==='hat'&&it.slot?' · '+esc(it.slot):''}</option>`).join('');
  const it=TRIDX[i.value],g=$('#sl-img');if(g)g.src=it&&TRIMG[it.id]?TRIMG[it.id]:'';
- const rl=$('#sl-rl');if(rl)rl.textContent=c.value==='mvp'?tt('Awakening Lv. (ไม่บังคับ)','Awakening Lv. (optional)'):tt('Refine + (ไม่บังคับ)','Refine + (optional)');
 }
 document.addEventListener('change',e=>{if(e.target.id==='sl-c')slFill('c');else if(e.target.id==='sl-i')slFill('i')});
 document.addEventListener('input',e=>{if(e.target.id!=='sl-p')return;const n=parseInt((e.target.value||'').replace(/[^\d]/g,''),10),u=$('#sl-usd');if(u)u.textContent=n>0?'≈ '+(n*fx).toFixed(2)+' USD':''});
 document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;if(e.target.id==='ig')ignSave();else if(e.target.id==='sl-p')sellSave()});
 async function sellSave(){
- const e=$('#sl-e'),id=$('#sl-i').value,pr=parseInt(($('#sl-p').value||'').replace(/[^\d]/g,''),10),rs=$('#sl-r').value.trim();
+ const e=$('#sl-e'),id=$('#sl-i').value,pr=parseInt(($('#sl-p').value||'').replace(/[^\d]/g,''),10);
  if(!TRIDX[id]){e.textContent=tt('เลือกสินค้าก่อน','Choose an item');return}
  if(!(pr>=1&&pr<=999999999)){e.textContent=tt('ใส่ราคาเป็นตัวเลข (บาท)','Enter a price in THB');return}
- let rf=null;if(rs!==''){rf=parseInt(rs,10);if(!(rf>=0&&rf<=20)){e.textContent=tt('Refine / Awakening ต้องอยู่ระหว่าง 0-20','Refine / Awakening must be 0-20');return}}
- const r=await sb.from('listings').insert({item_id:id,price:pr,refine:rf});
+ const r=await sb.from('listings').insert({item_id:id,price:pr});
  if(r.error){const m=r.error.message||'';
   if(/listing_limit/.test(m)){e.textContent=tt('ลงขายครบ 30 รายการแล้ว ลบหรือปิดรายการเก่าก่อน','You have 30 active listings. Remove one first')}
   else if(/foreign key|seller_id/i.test(m)){mp=null;gateNext='sell';ignBox()}

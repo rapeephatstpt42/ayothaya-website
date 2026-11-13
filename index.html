@@ -263,11 +263,11 @@ input:focus,select:focus{border-color:var(--violet)}
 body.desk .cgrid{grid-template-columns:repeat(5,1fr)}
 .mini[data-act="ccsave"]{background:var(--grad);color:#1b1206;border-color:transparent;padding:11px 20px;font-size:14px}
 .mini[data-act="ccsave"]:disabled{background:var(--bg2);color:var(--mute);border:1px solid var(--line);cursor:not-allowed}
-body.phone #lb:not([data-act="logout"]){display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:1 1 170px;min-height:42px;padding:9px 20px;font-size:15px;font-weight:700;color:#1b1206;background:var(--grad);border:0;border-radius:999px;box-shadow:0 4px 18px rgba(255,138,76,.4)}
-body.phone #lb:not([data-act="logout"])::before{content:"";width:16px;height:16px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2.5'/%3E%3Cpath d='M8 11V8a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2.5'/%3E%3Cpath d='M8 11V8a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E") center/contain no-repeat}
-body.phone #lb:not([data-act="logout"]):active{transform:scale(.98)}
+body.phone #lb[data-act="dclogin0"]{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:1 1 170px;min-height:42px;padding:9px 20px;font-size:15px;font-weight:700;color:#1b1206;background:var(--grad);border:0;border-radius:999px;box-shadow:0 4px 18px rgba(255,138,76,.4)}
+body.phone #lb[data-act="dclogin0"]::before{content:"";width:16px;height:16px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2.5'/%3E%3Cpath d='M8 11V8a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2.5'/%3E%3Cpath d='M8 11V8a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E") center/contain no-repeat}
+body.phone #lb[data-act="dclogin0"]:active{transform:scale(.98)}
 .ccv>p.sub,.mmem>p.sub{font-weight:400;color:var(--mute);font-size:13px;margin:0 0 12px}
-body.phone #lb:not([data-act="logout"]){flex:1 1 190px;white-space:nowrap;padding:9px 14px;font-size:14px}
+body.phone #lb[data-act="dclogin0"]{flex:1 1 190px;white-space:nowrap;padding:9px 14px;font-size:14px}
 
 /* ===== เมนู: หน้าที่เปิดอยู่ใหญ่ขึ้นนิดหน่อย + แถบสีสั้นๆ ===== */
 nav button{position:relative;transition:color .15s,background-color .15s}
@@ -390,6 +390,33 @@ button.tc-ct{border:0;font-family:inherit;cursor:pointer}
 .box select{width:100%}
 .box .pf{display:flex;align-items:center;gap:10px;margin:10px 0}.box .pf img{width:44px;height:44px;border-radius:50%;margin:0;flex:none}
 .box .sl-pv{display:flex;align-items:center;gap:10px;margin:8px 0}.box .sl-pv img{width:56px;height:auto;margin:0;flex:none}.box .sl-pv select{flex:1;min-width:0}
+body.phone #lb[data-act="dclogin0"]{color:#fff;background:#5865F2;box-shadow:0 4px 18px rgba(88,101,242,.4)}
+body.phone #lb[data-act="dclogin0"]::before{content:none}
+body.phone #lb[data-act="goprof"]{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:1 1 170px;min-height:42px;min-width:0;padding:6px 14px;border-radius:999px;background:var(--bg2);border:1px solid #5865F2;color:var(--ink);font-size:14px;font-weight:600}
+.dci{width:20px;height:20px;flex:none}
+.dcb{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 22px;border:0;border-radius:999px;background:#5865F2;color:#fff;font:600 15px Prompt,system-ui,sans-serif;cursor:pointer}
+.dcb:hover{background:#4752c4}.dcb:active{transform:scale(.98)}
+.lb-av,.nav-av{width:24px;height:24px;border-radius:50%;object-fit:cover;flex:none;display:block}
+nav button i .nav-av{width:22px;height:22px}
+.lb-n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+body.desk nav .navfoot{flex-direction:column;align-items:stretch;gap:6px}
+body.desk nav .navfoot button.dcb{background:#5865F2;color:#fff;border:0}
+body.desk nav .navfoot button.dcb:hover{background:#4752c4}
+body.desk nav .navfoot button.pfchip{background:var(--bg2);border:1px solid #5865F2;color:var(--ink);justify-content:flex-start;gap:10px;padding:8px 12px}
+.offl{background:none;border:0;color:var(--mute);font:inherit;font-size:12px;text-decoration:underline;cursor:pointer;padding:6px;opacity:.9}
+.offl:hover{color:var(--ink)}
+body.desk nav .navfoot button.offl{flex:none;background:none;border:0;border-radius:0;color:var(--mute);font-size:12px;font-weight:400;padding:4px;text-decoration:underline}
+.offw{text-align:center;margin:20px 0 6px}body.desk .offw{display:none}
+.msub button{font-size:13px;padding-left:2px;padding-right:2px}
+.pfg{text-align:center}.pfg .ttl{margin-top:0}.pfg .pfh{justify-content:center}.pfg input{margin:8px 0}
+.pfh{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.pfa{width:72px;height:72px;border-radius:50%;flex:none;object-fit:cover;background:var(--bg2);box-shadow:0 0 0 2px #5865F2}
+.pfn{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}.pfn b{font-size:18px;overflow:hidden;text-overflow:ellipsis}
+.pfb{align-self:flex-start;font-size:11px;font-weight:700;color:#1b1206;background:var(--gold);border-radius:20px;padding:1px 9px}
+.pfs{margin-top:16px}.pfs h3{margin:0 0 8px;font-size:14px;color:var(--mute);font-weight:600}
+.pfm{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pfl img{width:40px;height:auto;border-radius:8px;flex:none}.pfl .nm{flex:1;min-width:0}.pfl small{display:block;color:var(--mute)}
+.pfo{border-top:1px solid var(--line);padding-top:14px}
 </style>
 </head>
 <body>
@@ -432,7 +459,7 @@ function nextWar(mode){
 const blankA=()=>({gl:{m:Array(40).fill(null),s:Array(40).fill(null)},ov:{m:Array(40).fill(null),s:Array(40).fill(null)}});
 let sb=null,M=[],A=blankA(),T={},edit=false,user=null,mu=null,mp=null,tab='gl',page='war',bd='m',po=false,held=null,q='',fc='',fq='',clr=false,dl=null;
 let cpy=false;
-let msub='cls',mcls='',ccid='';try{ccid=localStorage.getItem('ay_cc')||''}catch(e){}
+let msub='pf',mcls='',ccid='';try{ccid=localStorage.getItem('ay_cc')||''}catch(e){}
 const tt=(th,en,...a)=>(lang==='en'?en:th).replace(/\{(\d)\}/g,(m,i)=>a[i]);
 const CLORDER=['RB','PD','HP','CH','HW','PF','AC','ST','SN','MI','MS','BC','SU','LK','GY'];
 let meId='';try{meId=localStorage.getItem('ay_me')||''}catch(e){}
@@ -468,7 +495,7 @@ async function checkEditor(){
  const hasD=!!(u&&((u.identities||[]).some(i=>i.provider==='discord')||(u.app_metadata&&u.app_metadata.provider==='discord')));
  if(u){const r=await sb.from('editors').select('user_id').eq('user_id',u.id);edit=!!(r.data&&r.data.length)}
  user=(u&&(edit||!hasD))?u:null;mu=hasD?u:null;await loadProfile();
- $('#lb').textContent=user?(''+tl('ออกจากระบบ')+''):(''+tl('เข้าสู่ระบบ Officer')+'');$('#lb').dataset.act=user?'logout':'login';
+ authUI();
  $('#who').textContent=edit?(''+tl('โหมดแก้ไข')+''):'';
 }
 const placed=mode=>{const s=new Set();['m','s'].forEach(b=>A[mode][b].forEach(x=>x&&s.add(x)));return s};
@@ -521,7 +548,7 @@ function ccBody(){
 }
 const ccRefresh=()=>{const e=$('#ccb');if(e)e.innerHTML=ccBody()};
 function clsView(){
- if(!CBS.cc.sel&&!CBS.cc.q&&ccid&&mem(ccid))CBS.cc={q:mem(ccid).n,sel:ccid,hi:0};
+ const pid=(meId&&mem(meId))?meId:ccid;if(!CBS.cc.sel&&!CBS.cc.q&&pid&&mem(pid))CBS.cc={q:mem(pid).n,sel:pid,hi:0};
  return `<div class="res ccv"><h2 class="ttl">${tt('เปลี่ยนอาชีพ','Change class')}</h2><p class="sub" style="margin:0 0 12px">${tt('เลือกตัวละครของคุณ แล้วแตะอาชีพใหม่ จากนั้นกดยืนยัน ทำก่อนเวลาวอร์ เพื่อให้ทีมจัดปาร์ตี้ได้ตรงกับอาชีพจริง','Choose your character, tap the new class, then confirm. Do this before war time so the party team can arrange correctly.')}</p><label class="lb" for="cb-cc">${tt('ตัวละครของคุณ','Your character')}</label>${cbHTML('cc',tt('พิมพ์ชื่อตัวละคร แล้วเลือกจากรายการ','Type your character name, then pick from the list'))}<div id="ccb">${ccBody()}</div></div>`;
 }
 function doCls(){
@@ -537,8 +564,10 @@ function listView(){
  return `<p class="sub" style="margin:0 0 10px">${tt('รายชื่อสมาชิกทั้งหมด ถ้าจะเปลี่ยนอาชีพหรือชื่อ ใช้แท็บด้านบน','Full member list. To change a class or a name, use the tabs above.')}</p><div class="tags">${tg}</div>${edit?`<div class="add"><input id="nn" placeholder="${tl('ชื่อตัวละครใหม่')}"><select id="nc">${opts('HP')}</select><button class="mini" data-act="add">${tl('เพิ่มสมาชิก')}</button></div>`:''}<input id="mq" class="big" placeholder="${tl('ค้นหาชื่อ')}" value="${esc(q)}"><div id="ml">${memList()}</div>`;
 }
 function memView(){
- const subs=[['cls',tt('เปลี่ยนอาชีพ','Change class')],['rn',tt('เปลี่ยนชื่อ','Rename')],['list',tt('รายชื่อ','Roster')]];
- return `<div class="list mmem"><div class="seg msub">${subs.map(([k,l])=>`<button data-msub="${k}" class="${msub===k?'on':''}">${l}</button>`).join('')}</div>${msub==='cls'?clsView():msub==='rn'?renameView():listView()}</div>`;
+ const subs=[['pf',tt('โปรไฟล์','Profile')],['cls',tt('เปลี่ยนอาชีพ','Change class')],['rn',tt('เปลี่ยนชื่อ','Rename')],['list',tt('รายชื่อ','Roster')+' ('+M.length+')']];
+ const need=msub==='cls'||msub==='rn',ok=!!(mu||user);
+ const body=msub==='pf'?pfView():need&&!ok?gateCard(msub==='cls'?tt('เปลี่ยนอาชีพ','change a class'):tt('เปลี่ยนชื่อตัวละคร','rename a character')):need&&mu&&!mp?nameCard():msub==='cls'?clsView():msub==='rn'?renameView():listView();
+ return `<div class="list mmem"><div class="seg msub">${subs.map(([k,l])=>`<button data-msub="${k}" class="${msub===k?'on':''}">${l}</button>`).join('')}</div>${body}</div>`;
 }
 function meCard(inSearch){
  const m=meId&&mem(meId);
@@ -561,6 +590,7 @@ function statsView(){
 function render(){
  $('#nav').innerHTML=navHTML();
  $('#view').innerHTML=!sb?('<p class="sub">'+tl('ยังไม่ได้ตั้งค่า Supabase: เปิดไฟล์ index.html แล้วใส่ Project URL กับ anon key ที่ด้านบนของสคริปต์')+'</p>'):page==='mem'?memView():page==='st'?statsView():page==='rn'?renameView():page==='lv'?leaveView():page==='au'?auView():page==='wp'?wpView():page==='tr'?tradeView():page==='me'?`<div class="list">${meCard(1)}<input id="fq" class="big" placeholder="${tl('พิมพ์ชื่อตัวละครของคุณ')}" value="${esc(fq)}"><div id="fr">${findRes()}</div></div>`:war(tab);
+ $('#view').insertAdjacentHTML('beforeend',offLink());authUI();
  const h=$('#held');
  if(edit&&held&&mem(held.id)){const m=mem(held.id);h.innerHTML=`${ic(m.c)}<b>${esc(m.n)}</b><select id="hc">${opts(m.c)}</select><span class="sub">${tl('แตะช่องในปาร์ตี้เพื่อวาง')}</span>${held.b?('<button class="mini" data-act="rm">'+tl('ถอดออกจากปาร์ตี้')+'</button>'):''}<button class="mini" data-act="cancel">${tl('ยกเลิก')}</button>`;h.style.display='flex'}
  else{held=null;h.style.display='none'}
@@ -671,7 +701,7 @@ document.addEventListener('click',e=>{
  if(t.dataset.nc){mcls=mcls===t.dataset.nc?'':t.dataset.nc;ccRefresh();return}
  if(t.dataset.vm){vm=t.dataset.vm;try{localStorage.setItem('ay_vm',vm)}catch(er){}applyVM();held=null;po=false;render();return}
  if(t.dataset.mode){tab=t.dataset.mode;page='war';held=null;po=false;q='';fc='';clr=false;cpy=false;render();return}
- if(t.dataset.tab){page=t.dataset.tab;if(page==='tr'){tcat='all';trLoad()};held=null;po=false;q='';fc='';clr=false;cpy=false;render();return}
+ if(t.dataset.tab){page=t.dataset.tab;if(page==='tr'){tcat='all';trLoad()};if(page==='mem')pfLoad();held=null;po=false;q='';fc='';clr=false;cpy=false;render();return}
  if(t.dataset.bd){bd=t.dataset.bd;held=null;render();return}
  if(t.dataset.pick){held=held&&held.id===t.dataset.pick?null:{id:t.dataset.pick};po=false;render();return}
  if(t.classList.contains('slot')){
@@ -691,19 +721,22 @@ document.addEventListener('click',e=>{
  else if(a==='ccsave')doCls()
  else if(a==='contact'){if(gate('contact'))toast(tt('ยังไม่พบ Discord ของผู้ขาย ลองรีเฟรชหน้า','Seller contact not available. Try refreshing the page'))}
  else if(a==='dclogin')dcLogin()
- else if(a==='dclogout'){sb.auth.signOut().then(()=>checkEditor()).then(()=>trLoad()).then(()=>{held=null;render()})}
+ else if(a==='dclogout'){sb.auth.signOut().then(()=>checkEditor()).then(()=>trLoad()).then(()=>{held=null;myLs=[];msub='pf';render()})}
  else if(a==='ignbox'){gateNext='';ignBox()}
  else if(a==='ignsave')ignSave()
  else if(a==='sellsave')sellSave()
  else if(a==='lsold')lsEnd(t.dataset.id,false)
  else if(a==='lsdel')lsEnd(t.dataset.id,true)
+ else if(a==='dclogin0'){gateNext='';dcLogin()}
+ else if(a==='goprof'){page='mem';msub='pf';held=null;po=false;pfLoad();render();scrollTo(0,0)}
+ else if(a==='pfedit'){gateNext='';ignBox()}
  else if(a==='ecls'&&edit){const m=mem(t.dataset.id);if(m)show(`<h3 style="margin:12px 0 8px">${esc(m.n)} · ${tt('แก้อาชีพ','Edit class')}</h3><div class="cgrid">${CLORDER.map(k=>`<button class="cgi${k===m.c?' cur':''}" data-act="ecpick" data-id="${m.id}" data-k="${k}">${ic(k)}<span>${CL[k][0]}</span></button>`).join('')}</div>`)}
  else if(a==='ecpick'&&edit){setClass(t.dataset.id,t.dataset.k);$('#ov').hidden=true}
  else if(a==='rlog')showLog()
  else if(a==='home'){page='war';tab='gl';bd='m';held=null;po=false;q='';fc='';clr=false;cpy=false;$('#ov').hidden=true;render();scrollTo(0,0)}
  else if(a==='lvadd')doLeave()
- else if(a==='setme'){meId=t.dataset.id;try{localStorage.setItem('ay_me',meId)}catch(e){}const mm=mem(meId);toast((mm?mm.n:'')+' · '+tl('ตั้งเป็นตัวฉันแล้ว'));render()}
- else if(a==='unme'){meId='';try{localStorage.removeItem('ay_me')}catch(e){}render()}
+ else if(a==='setme'){meId=t.dataset.id;try{localStorage.setItem('ay_me',meId)}catch(e){}const mm=mem(meId);toast((mm?mm.n:'')+' · '+tl('ตั้งเป็นตัวฉันแล้ว'));syncMe();render()}
+ else if(a==='unme'){meId='';try{localStorage.removeItem('ay_me')}catch(e){}syncMe();render()}
  else if(a==='gome'){page='me';held=null;po=false;render();scrollTo(0,0)}
  else if(a==='lvdel'&&edit){const id=t.dataset.id;if(ldl===id){LV=LV.filter(x=>String(x.id)!==id);ldl=null;run(sb.from('leaves').delete().eq('id',id))}else ldl=id;render()}
  else if(a==='lvtxt'&&edit){const w=t.dataset.w.split('|');show(`<textarea id="tx" readonly>${esc(lvText(w[0],w[1]))}</textarea><p><button class="mini" data-act="copy">${tl('คัดลอก')}</button></p>`)}
@@ -782,14 +815,14 @@ const ICN={
 const svg=k=>`<svg class="ni" viewBox="0 0 24 24" aria-hidden="true">${ICN[k]}</svg>`;
 const LOGO='<i class="lgm">'+'<svg viewBox="0 0 24 28" aria-hidden="true"><path fill="url(#lgG)" d="M12 1 22 5v9c0 6-5 10-10 13C7 24 2 20 2 14V5z"/><path fill="#1b1206" d="M12 6l1.4 4h-2.8zM9.6 11h4.8l1.2 4H8.4zM7.4 16h9.2l1.2 4.5H6.2z"/></svg>'+'</i>';
 const PC={au:'#b78cff',war:'#ff7a59',lv:'#ffb454',me:'#35d0e6',mem:'#4ade80',st:'#60a5fa',rn:'#a78bfa',tr:'#f5c542'};
-const navFoot=()=>`<div class="navfoot"><button data-act="${user?'logout':'login'}">${user?(''+tl('ออกจากระบบ')+''):(''+tl('เข้าสู่ระบบ Officer')+'')}</button></div>`;
-const PAGES=[['me','ค้นหา','ค้นหาตัวละคร'],['war','Wars','Wars'],['lv','แจ้งลา','แจ้งลาวอร์'],['tr','ซื้อ-ขาย','ซื้อ-ขาย / Trade'],['st','สถิติ','สถิติกิลด์'],['mem','สมาชิก','สมาชิก']]; //k
+const navFoot=()=>`<div class="navfoot">${mu?`<button class="pfchip" data-act="goprof">${avImg('nav-av')}<span class="lb-n">${mp?esc(mp.ign):tt('ตั้งชื่อตัวละคร','Set character name')}</span></button>`:`<button class="dcb" data-act="dclogin0">${DCI}<span>${tt('เข้าสู่ระบบด้วย Discord','Log in with Discord')}</span></button>`}<button class="offl" data-act="${user?'logout':'login'}">${user?tt('ออกจากระบบ Officer','Officer log out'):'Officer'}</button></div>`;
+const PAGES=[['me','ค้นหา','ค้นหาตัวละคร'],['war','Wars','Wars'],['lv','แจ้งลา','แจ้งลาวอร์'],['tr','ซื้อ-ขาย','ซื้อ-ขาย / Trade'],['st','สถิติ','สถิติกิลด์'],['mem','โปรไฟล์','โปรไฟล์ / Profile']]; //k
 const tradeSeg=a=>`<div class="seg modes"><button data-tab="tr" class="${a==='tr'?'on':''}">${tt('ซื้อ-ขาย','Trade')}</button><button data-tab="au" class="${a==='au'?'on':''}">${tt('ประมูลเศษการ์ดหลังวอร์','Designated Auction')}</button></div>`;
 const sgPrev={war:false,tr:false};
 const sgWrap=(g,open,inner)=>{const an=open&&!sgPrev[g];sgPrev[g]=open;return `<div class="subnav${open?' open':''}${an?' anim':''}"><div class="sn-in">${inner}</div></div>`};
 const tradeSub=()=>sgWrap('tr',page==='tr'||page==='au',TRCATS.map(([k,a,b])=>`<button data-act="tcat-${k}" style="--a:#f5c542" class="${page==='tr'&&tcat===k?'on':''}">${tt(a,b)}</button>`).join('')+`<button data-tab="au" style="--a:#b78cff" class="${page==='au'?'on':''}">${tt('ประมูลเศษการ์ดหลังวอร์','Designated Auction')}</button>`);
 const subNav=()=>sgWrap('war',page==='war'||page==='wp',['gl','ov'].map(k=>`<button data-mode="${k}" class="${page==='war'&&tab===k?'on':''}">${MODES[k].t}</button>`).join('')+`<button data-tab="wp" style="--a:#e8b04a" class="${page==='wp'?'on':''}">${tl('แผนวอร์')}</button>`);
-const navHTML=()=>`<div class="brand" data-act="home" role="button" tabindex="0" title="${tl('กลับหน้าหลัก')}"><div class="bt"><b>Ayothaya</b><span>Geffen-3</span></div></div>`+PAGES.map(([k,s,f])=>{const n=k==='mem'?' ('+M.length+')':'';return `<button data-tab="${k}" title="${tl(f)}" style="--a:${PC[k]}" class="${page===k||(k==='war'&&page==='wp')||(k==='tr'&&page==='au')?'on':''}"><i>${svg(k)}</i><span class="ns">${tl(s)}${n}</span><span class="nf">${tl(f)}${n}</span></button>`+(k==='war'?subNav():k==='tr'?tradeSub():'')}).join('')+navFoot();
+const navHTML=()=>`<div class="brand" data-act="home" role="button" tabindex="0" title="${tl('กลับหน้าหลัก')}"><div class="bt"><b>Ayothaya</b><span>Geffen-3</span></div></div>`+PAGES.map(([k,s,f])=>{const n='';return `<button data-tab="${k}" title="${tl(f)}" style="--a:${PC[k]}" class="${page===k||(k==='war'&&page==='wp')||(k==='tr'&&page==='au')?'on':''}"><i>${k==='mem'?(navAv()||svg(k)):svg(k)}</i><span class="ns">${tl(s)}${n}</span><span class="nf">${tl(f)}${n}</span></button>`+(k==='war'?subNav():k==='tr'?tradeSub():'')}).join('')+navFoot();
 
 // ===== ระบบแจ้งลา (รายวอร์) =====
 let LV=[],lvErr=false,lwar='',lrs='',ldl=null;
@@ -969,7 +1002,7 @@ const avOf=p=>p?(p.custom_avatar||p.avatar||''):'';
 const needSql=m=>/function|does not exist|schema cache|relation/i.test(m||'');
 const sqlHint=()=>tt('ยังใช้งานไม่ได้: ต้องรันไฟล์ trade.sql ใน Supabase ก่อน','Not ready: run trade.sql in Supabase first');
 const trMe=()=>{if(!mu)return '';const out=`<button class="mini" data-act="dclogout">${tt('ออกจากระบบ','Log out')}</button>`;
- if(!mp)return `<span class="tc-me"><button class="mini" data-act="ignbox">${tt('ตั้งชื่อในเกมส์','Set in-game name')}</button>${out}</span>`;
+ if(!mp)return `<span class="tc-me"><button class="mini" data-act="ignbox">${tt('ตั้งชื่อตัวละคร','Set character name')}</button>${out}</span>`;
  const a=safeUrl(avOf(mp));return `<span class="tc-me">${a?`<img src="${esc(a)}" alt="">`:''}<b>${esc(mp.ign)}</b>${out}</span>`};
 const tradeView=()=>{
  const rows=listings.filter(l=>TRIDX[l.item_id]&&(tcat==='all'||trCat(TRIDX[l.item_id])===tcat));
@@ -994,22 +1027,22 @@ async function trLoad(){
 }
 setInterval(()=>{if(page==='tr'&&!document.hidden&&sb)trLoad()},60000);
 
-// ----- โปรไฟล์สมาชิก (ชื่อในเกมส์ + รูป Discord) -----
+// ----- โปรไฟล์สมาชิก (ชื่อตัวละคร + รูป Discord) -----
 async function loadProfile(){
  mp=null;if(!mu)return;
- try{const r=await sb.from('profiles').select('*').eq('user_id',mu.id).maybeSingle();mp=(r&&r.data)||null;
+ try{const r=await sb.from('profiles').select('*').eq('user_id',mu.id).maybeSingle();mp=(r&&r.data)||null;if(mp){if(mp.member_id&&mp.member_id!==meId){meId=mp.member_id;try{localStorage.setItem('ay_me',meId)}catch(e2){}}else if(!mp.member_id&&meId)syncMe()}
   if(mp&&dAv(mu)&&mp.avatar!==dAv(mu)){const q2=await sb.rpc('save_profile',{p_ign:null});if(q2&&q2.data&&!q2.error)mp=q2.data}}catch(e){}
 }
 function gate(n){if(!sb)return false;if(!mu){gateNext=n;dcBox();return false}if(!mp){gateNext=n;ignBox();return false}return true}
-function dcBox(){show(`<h3 style="margin:12px 0 4px">${tt('เข้าสู่ระบบด้วย Discord','Log in with Discord')}</h3><p class="sub">${tt('ใช้ Discord เพื่อลงขายสินค้าหรือติดต่อผู้ขาย รูปโปรไฟล์จะใช้รูป Discord ของคุณ และต้องตั้งชื่อในเกมส์ก่อนใช้งาน','Use Discord to list items or contact sellers. Your Discord picture becomes your profile picture, and you set your in-game name first.')}</p><button class="mini" data-act="dclogin">${tt('เข้าสู่ระบบด้วย Discord','Log in with Discord')}</button>`)}
+function dcBox(){show(`<h3 style="margin:12px 0 4px">${tt('เข้าสู่ระบบด้วย Discord','Log in with Discord')}</h3><p class="sub">${tt('ใช้ Discord เพื่อลงขายสินค้าหรือติดต่อผู้ขาย รูปโปรไฟล์จะใช้รูป Discord ของคุณ และต้องตั้งชื่อตัวละครก่อนใช้งาน','Use Discord to list items or contact sellers. Your Discord picture becomes your profile picture, and you set your character name first.')}</p><button class="mini" data-act="dclogin">${tt('เข้าสู่ระบบด้วย Discord','Log in with Discord')}</button>`)}
 async function dcLogin(){
- try{localStorage.setItem('ay_ret',JSON.stringify({c:tcat,n:gateNext||''}))}catch(e){}
+ try{localStorage.setItem('ay_ret',JSON.stringify({p:page,c:tcat,n:gateNext||''}))}catch(e){}
  const r=await sb.auth.signInWithOAuth({provider:'discord',options:{redirectTo:location.origin+location.pathname}});
  if(r.error){try{localStorage.removeItem('ay_ret')}catch(e){}toast(tt('เข้าสู่ระบบ Discord ไม่สำเร็จ: ','Discord login failed: ')+r.error.message)}
 }
 function ignBox(){
  const a=safeUrl(dAv(mu));
- show(`<h3 style="margin:12px 0 4px">${tt('ตั้งชื่อในเกมส์','Set your in-game name')}</h3><div class="pf">${a?`<img src="${esc(a)}" alt="">`:''}<span class="sub" style="margin:0">${esc(dNm(mu))}<br>${tt('ใช้รูป Discord เป็นรูปโปรไฟล์','Your Discord picture is your profile picture')}</span></div><p class="sub">${tt('ใส่ชื่อตัวละครในเกมส์ที่ผู้ซื้อจะเห็นในรายการขาย (2-24 ตัวอักษร ห้ามซ้ำกับคนอื่น)','Enter the in-game name buyers will see on your listings (2-24 characters, must be unique).')}</p><input id="ig" maxlength="24" autocomplete="off" placeholder="${tt('ชื่อในเกมส์','In-game name')}"><div class="err" id="ige"></div><button class="mini" data-act="ignsave">${tt('บันทึก','Save')}</button>`);
+ show(`<h3 style="margin:12px 0 4px">${tt('ตั้งชื่อตัวละคร','Set your character name')}</h3><div class="pf">${a?`<img src="${esc(a)}" alt="">`:''}<span class="sub" style="margin:0">${esc(dNm(mu))}<br>${tt('ใช้รูป Discord เป็นรูปโปรไฟล์','Your Discord picture is your profile picture')}</span></div><p class="sub">${tt('ใส่ชื่อตัวละครในเกมส์ที่ผู้ซื้อจะเห็นในรายการขาย (2-24 ตัวอักษร ห้ามซ้ำกับคนอื่น)','Enter the character name buyers will see on your listings (2-24 characters, must be unique).')}</p><input id="ig" maxlength="24" autocomplete="off" placeholder="${tt('ชื่อตัวละคร','Character name')}" value="${mp?esc(mp.ign):''}"><div class="err" id="ige"></div><button class="mini" data-act="ignsave">${tt('บันทึก','Save')}</button>`);
  setTimeout(()=>{const i=$('#ig');if(i)i.focus()},50);
 }
 async function ignSave(){
@@ -1017,13 +1050,14 @@ async function ignSave(){
  if(v.length<2||v.length>24){e.textContent=tt('ชื่อต้องยาว 2-24 ตัวอักษร','Name must be 2-24 characters');return}
  const r=await sb.rpc('save_profile',{p_ign:v});
  if(r.error){const m=r.error.message||'';e.textContent=(r.error.code==='23505'||/profiles_ign_uq|duplicate/i.test(m))?tt('ชื่อนี้มีคนใช้แล้ว','This name is already taken'):needSql(m)?sqlHint():m;return}
- await loadProfile();$('#ov').hidden=true;toast(tt('บันทึกชื่อในเกมส์แล้ว','In-game name saved'));
+ await loadProfile();$('#ov').hidden=true;toast(tt('บันทึกชื่อตัวละครแล้ว','Character name saved'));
+ if(!meId){const mm=M.find(x=>x.n.toLowerCase()===v.toLowerCase());if(mm){meId=mm.id;try{localStorage.setItem('ay_me',meId)}catch(e2){}syncMe()}}
  const n=gateNext;gateNext='';await trLoad();render();if(n==='sell')sellBox();
 }
 async function postLogin(){
  let ret=null;try{ret=JSON.parse(localStorage.getItem('ay_ret')||'null');localStorage.removeItem('ay_ret')}catch(e){}
  if(!ret||!mu)return;
- page='tr';tcat=ret.c||'all';gateNext=ret.n||'';await trLoad();
+ const okp=['tr','mem','me','st','lv','war'];page=ret.n?'tr':(okp.includes(ret.p)?ret.p:page);tcat=ret.c||'all';gateNext=ret.n||'';held=null;if(page==='tr')await trLoad();if(page==='mem')await pfLoad();
  if(!mp)ignBox();else{toast(tt('เข้าสู่ระบบ Discord แล้ว','Logged in with Discord'));if(gateNext==='sell'){gateNext='';sellBox()}else gateNext=''}
 }
 
@@ -1054,12 +1088,49 @@ async function sellSave(){
  $('#ov').hidden=true;toast(tt('ลงขายแล้ว','Listed'));tcat=trCat(TRIDX[id]);await trLoad();render();
 }
 async function lsEnd(id,del){
- if(!listings.find(x=>x.id===id))return;
+ if(!listings.find(x=>x.id===id)&&!myLs.find(x=>x.id===id))return;
  if(!confirm(del?tt('ลบรายการนี้?','Delete this listing?'):tt('ทำเครื่องหมายว่าขายแล้ว? รายการจะหายจากหน้านี้','Mark as sold? It will disappear from this page')))return;
  const r=del?await sb.from('listings').delete().eq('id',id).select('id'):await sb.from('listings').update({status:'sold'}).eq('id',id).select('id');
  if(r.error){toast(tt('ไม่สำเร็จ: ','Failed: ')+r.error.message);return}
  if(!(r.data&&r.data.length)){toast(tt('ไม่มีสิทธิ์จัดการรายการนี้','You cannot manage this listing'));return}
- await trLoad();render();
+ await trLoad();await pfLoad();render();
+}
+
+// ===== Profile / Discord UI =====
+Object.assign(EN,{'โปรไฟล์':'Profile','โปรไฟล์ / Profile':'Profile'});
+ICN.mem='<circle cx="12" cy="8" r="3.6"/><path d="M4.8 20.2c.7-3.9 3.6-6 7.2-6s6.5 2.1 7.2 6"/>';
+const DCI='<svg class="dci" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>';
+const myAv=()=>safeUrl(mp?avOf(mp):'')||safeUrl(dAv(mu));
+const avImg=c=>{const a=myAv();return a?`<img class="${c}" src="${esc(a)}" alt="">`:''};
+const navAv=()=>mu?avImg('nav-av'):'';
+const dcBtn=()=>`<button class="dcb" data-act="dclogin0">${DCI}<span>${tt('เข้าสู่ระบบด้วย Discord','Log in with Discord')}</span></button>`;
+const offLink=()=>`<div class="offw"><button class="offl" data-act="${user?'logout':'login'}">${user?tt('ออกจากระบบ Officer','Officer log out'):'Officer'}</button></div>`;
+function authUI(){
+ const lb=$('#lb');if(!lb)return;
+ if(mu){lb.dataset.act='goprof';lb.innerHTML=avImg('lb-av')+'<span class="lb-n">'+(mp?esc(mp.ign):tt('ตั้งชื่อตัวละคร','Set character name'))+'</span>'}
+ else{lb.dataset.act='dclogin0';lb.innerHTML=DCI+'<span>'+tt('เข้าสู่ระบบด้วย Discord','Log in with Discord')+'</span>'}
+}
+let myLs=[];
+async function pfLoad(){
+ if(!sb||!mu){myLs=[];return}
+ const r=await sb.from('listings').select('*').eq('seller_id',mu.id).eq('status','active').order('created_at',{ascending:false});
+ myLs=r.error?[]:(r.data||[]);
+ if(page==='mem'&&msub==='pf'&&!document.activeElement.matches('input,select'))render();
+}
+async function syncMe(){
+ if(!mp)return;
+ try{const r=await sb.rpc('set_profile_member',{p_member:meId||null});if(!r.error)mp.member_id=meId||null}catch(e){}
+}
+const gateCard=what=>`<div class="res pfg"><h2 class="ttl">${tt('เข้าสู่ระบบด้วย Discord','Log in with Discord')}</h2><p class="sub">${tt('ล็อกอินด้วย Discord ก่อน จึงจะ{0}ได้ รูปโปรไฟล์ใช้รูป Discord ของคุณ และใส่ชื่อตัวละครหลังล็อกอิน','Log in with Discord to {0}. Your Discord picture is your profile picture, and you add your character name after logging in.',what)}</p>${dcBtn()}</div>`;
+const nameCard=()=>`<div class="res pfg"><h2 class="ttl">${tt('ใส่ชื่อตัวละครของคุณ','Enter your character name')}</h2><div class="pfh">${avImg('pfa')}<span class="sub" style="margin:0">${esc(dNm(mu))}</span></div><p class="sub">${tt('ชื่อที่ผู้ซื้อจะเห็นในรายการขาย (2-24 ตัวอักษร ห้ามซ้ำกับคนอื่น)','The name buyers will see on your listings (2-24 characters, must be unique).')}</p><input id="ig" maxlength="24" autocomplete="off" placeholder="${tt('ชื่อตัวละคร','Character name')}"><div class="err" id="ige"></div><button class="mini" data-act="ignsave">${tt('บันทึก','Save')}</button></div>`;
+function pfView(){
+ if(!mu)return gateCard(tt('ใช้งานโปรไฟล์','use your profile'))+(user?`<p class="sub" style="text-align:center">${tt('ตอนนี้คุณเข้าสู่ระบบเป็น Officer','You are logged in as an Officer')}</p>`:'');
+ if(!mp)return nameCard();
+ const mc=meId&&mem(meId),cl=mc?(CL[mc.c]||CL.XX)[0]:'';
+ const chr=mc?`<div class="pfm">${ic(mc.c)}<b>${esc(mc.n)}</b><span class="sub">${cl}</span><button class="mini" data-act="gome">${tt('เปลี่ยน','Change')}</button></div>`:`<div class="pfm"><span class="sub">${tt('ยังไม่ได้เลือกตัวละครในกิลด์','No guild character selected')}</span><button class="mini" data-act="gome">${tt('เลือกตัวละครของฉัน','Pick my character')}</button></div>`;
+ const ls=myLs.filter(l=>TRIDX[l.item_id]);
+ const rows=ls.length?ls.map(l=>{const it=TRIDX[l.item_id],im=TRIMG[it.id]?`<img src="${TRIMG[it.id]}" alt="">`:'';return `<div class="row pfl">${im}<span class="nm">${esc(it.n)}<small>${Number(l.price).toLocaleString('en-US')} ${tt('บาท','THB')}</small></span><button class="mini" data-act="lsold" data-id="${esc(l.id)}">${tt('ขายแล้ว','Mark sold')}</button><button class="mini" data-act="lsdel" data-id="${esc(l.id)}">${tt('ลบ','Delete')}</button></div>`}).join(''):`<p class="sub" style="margin:0 0 8px">${tt('ยังไม่ได้ลงขายสินค้า','You have no active listings')}</p><button class="mini" data-tab="tr">${tt('ไปหน้าซื้อ-ขาย','Go to Trade')}</button>`;
+ return `<div class="res pfc"><div class="pfh">${avImg('pfa')}<div class="pfn"><b>${esc(mp.ign)}</b><span class="sub">Discord: ${esc(mp.discord_name||dNm(mu))}</span>${edit?'<span class="pfb">Officer</span>':''}</div><button class="mini" data-act="pfedit">${tt('แก้ชื่อ','Edit')}</button></div><div class="pfs"><h3>${tt('ตัวละครของฉันในกิลด์','My guild character')}</h3>${chr}</div><div class="pfs"><h3>${tt('รายการที่ฉันลงขาย','My listings')} (${ls.length})</h3>${rows}</div><div class="pfs pfo"><button class="mini" data-act="dclogout">${tt('ออกจากระบบ','Log out')}</button></div></div>`;
 }
 
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='rn')doRename()});
@@ -1306,7 +1377,7 @@ function applyLang(){
  set('#lg','aria-label',tl('เลือกภาษา'));
  document.querySelectorAll('header [data-act="home"]').forEach(e=>e.setAttribute('title',tl('กลับหน้าหลัก')));
  document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('on',b.dataset.lang===lang));
- const lb=$('#lb');if(lb)lb.textContent=user?tl('ออกจากระบบ'):tl('เข้าสู่ระบบ Officer');
+ authUI();
  const w=$('#who');if(w)w.textContent=edit?tl('โหมดแก้ไข'):'';
 }
 function setLang(l){if(l!=='th'&&l!=='en')return;lang=l;try{localStorage.setItem('ay_lang',l)}catch(e){}applyLang();render()}

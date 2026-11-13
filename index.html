@@ -423,7 +423,11 @@ body.desk nav .navfoot button.offl{flex:none;background:none;border:0;border-rad
 .sn-h{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);padding:10px 10px 2px}
 .tc.want{border-color:#35d0e6}
 .tc-want{display:inline-block;align-self:flex-start;margin-top:4px;padding:1px 10px;border-radius:999px;background:color-mix(in srgb,#35d0e6 18%,transparent);border:1px solid #35d0e6;color:#35d0e6;font-size:12px;font-weight:600}
-.sl-neg{display:flex;align-items:center;gap:8px;margin:8px 0;font-size:14px}.sl-neg input{width:auto}
+.box label.sl-neg{display:flex;align-items:center;gap:12px;margin:12px 0 4px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg2);color:var(--ink);font-size:15px;cursor:pointer}
+.box label.sl-neg input{display:block;flex:none;width:24px;height:24px;margin:0;accent-color:var(--gold);cursor:pointer}
+.sl-neg b{display:block;font-weight:600}.sl-neg small{display:block;margin-top:2px;font-size:12px;color:var(--mute)}
+.box label.sl-neg:has(input:checked){border-color:var(--gold);background:color-mix(in srgb,var(--gold) 12%,var(--bg2))}
+#sl-p:disabled{opacity:.4;cursor:not-allowed}
 </style>
 </head>
 <body>
@@ -1078,7 +1082,7 @@ async function postLogin(){
 function sellBox(k){
  k=k==='buy'?'buy':'sell';slKind=k;const bu=k==='buy';
  if(!gate(k))return;
- show(`<h3 style="margin:12px 0 4px">${bu?tt('ลงประกาศรับซื้อ','Post a request to buy'):tl('ลงขายสินค้า')}</h3><label for="sl-c">${tt('หมวด','Category')}</label><select id="sl-c">${TRCATS.slice(1).map(([k,a,b])=>`<option value="${k}">${tt(a,b)}</option>`).join('')}</select><label for="sl-i">${tt('สินค้า','Item')}</label><div class="sl-pv"><img id="sl-img" alt=""><select id="sl-i"></select></div><label for="sl-p">${bu?tt('ราคาที่รับซื้อ (บาท)','Buying price (THB)'):tt('ราคา (บาท)','Price (THB)')}</label><input id="sl-p" type="text" inputmode="numeric" autocomplete="off" placeholder="${tt('เช่น 150000','e.g. 150000')}"><p class="sub" id="sl-usd" style="margin:0"></p>${bu?`<label class="sl-neg"><input id="sl-n" type="checkbox"> ${tt('ราคาตามตกลง (ไม่ระบุราคา)','Negotiable (no price)')}</label>`:''}<div class="err" id="sl-e"></div><button class="mini" data-act="sellsave">${bu?tt('ลงประกาศ','Post request'):tt('ลงขาย','List item')}</button>`);
+ show(`<h3 style="margin:12px 0 4px">${bu?tt('ลงประกาศรับซื้อ','Post a request to buy'):tl('ลงขายสินค้า')}</h3><label for="sl-c">${tt('หมวด','Category')}</label><select id="sl-c">${TRCATS.slice(1).map(([k,a,b])=>`<option value="${k}">${tt(a,b)}</option>`).join('')}</select><label for="sl-i">${tt('สินค้า','Item')}</label><div class="sl-pv"><img id="sl-img" alt=""><select id="sl-i"></select></div><label for="sl-p">${bu?tt('ราคาที่รับซื้อ (บาท)','Buying price (THB)'):tt('ราคา (บาท)','Price (THB)')}</label><input id="sl-p" type="text" inputmode="numeric" autocomplete="off" placeholder="${tt('เช่น 150000','e.g. 150000')}"><p class="sub" id="sl-usd" style="margin:0"></p>${bu?`<label class="sl-neg" for="sl-n"><input id="sl-n" type="checkbox"><span><b>${tt('ราคาตามตกลง','Price negotiable')}</b><small>${tt('ติ๊กถ้ายังไม่กำหนดราคา (ไม่ต้องกรอกช่องราคา)','Tick if you have no set price (leave the price blank)')}</small></span></label>`:''}<div class="err" id="sl-e"></div><button class="mini" data-act="sellsave">${bu?tt('ลงประกาศ','Post request'):tt('ลงขาย','List item')}</button>`);
  slFill('c');
 }
 function slFill(w){
@@ -1086,7 +1090,7 @@ function slFill(w){
  if(w==='c')i.innerHTML=(TRITEMS[c.value]||[]).map(it=>`<option value="${esc(it.id)}">${esc(it.n)}${it.lv?' · Lv.'+it.lv:''}${c.value==='hat'&&it.slot?' · '+esc(it.slot):''}</option>`).join('');
  const it=TRIDX[i.value],g=$('#sl-img');if(g)g.src=it&&TRIMG[it.id]?TRIMG[it.id]:'';
 }
-document.addEventListener('change',e=>{if(e.target.id==='sl-c')slFill('c');else if(e.target.id==='sl-i')slFill('i')});
+document.addEventListener('change',e=>{if(e.target.id==='sl-c')slFill('c');else if(e.target.id==='sl-i')slFill('i');else if(e.target.id==='sl-n'){const p=$('#sl-p'),u=$('#sl-usd');if(p){p.disabled=e.target.checked;if(e.target.checked){p.value='';p.placeholder=tt('ราคาตามตกลง','Negotiable')}else p.placeholder=tt('เช่น 150000','e.g. 150000')}if(u&&e.target.checked)u.textContent=''}});
 document.addEventListener('input',e=>{if(e.target.id!=='sl-p')return;const n=parseInt((e.target.value||'').replace(/[^\d]/g,''),10),u=$('#sl-usd');if(u)u.textContent=n>0?'≈ '+(n*fx).toFixed(2)+' USD':''});
 document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;if(e.target.id==='ig')ignSave();else if(e.target.id==='sl-p')sellSave()});
 async function sellSave(){

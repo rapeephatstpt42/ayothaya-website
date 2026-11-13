@@ -597,8 +597,9 @@ function render(){
  if(edit&&held&&mem(held.id)){const m=mem(held.id);h.innerHTML=`${ic(m.c)}<b>${esc(m.n)}</b><select id="hc">${opts(m.c)}</select><span class="sub">${tl('แตะช่องในปาร์ตี้เพื่อวาง')}</span>${held.b?('<button class="mini" data-act="rm">'+tl('ถอดออกจากปาร์ตี้')+'</button>'):''}<button class="mini" data-act="cancel">${tl('ยกเลิก')}</button>`;h.style.display='flex'}
  else{held=null;h.style.display='none'}
  document.body.classList.toggle('holding',!!(edit&&held));
- if(page==='au'){if(location.hash.toLowerCase()!=='#auction')try{history.replaceState(null,'','#auction')}catch(e){}}else if(/^#(auction|designed)/i.test(location.hash))try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+ try{const np=pathOf(),hh=/^#(auction|designed|trade|market)/i.test(location.hash)?'':location.hash;if(location.pathname!==np||hh!==location.hash)history.replaceState(null,'',np+location.search+hh)}catch(e){}
 }
+function pathOf(){return page==='war'?(tab==='ov'?'/overrun':'/guild-league'):page==='wp'?'/war-plan':page==='me'?'/search':page==='lv'?'/leave':page==='tr'?'/trade':page==='au'?'/auction':page==='st'?'/stats':page==='rn'?'/rename':page==='mem'?(msub==='list'?'/members':msub==='cls'?'/class':msub==='rn'?'/rename':'/profile'):'/'}
 function setSlot(mode,b,i,id){
  A[mode][b][i]=id||null;
  return run(id?sb.from('slots').upsert({mode,board:b,pos:i,member_id:id}):sb.from('slots').delete().match({mode,board:b,pos:i}));
@@ -1041,7 +1042,7 @@ function gate(n){if(!sb)return false;if(!mu){gateNext=n;dcBox();return false}if(
 function dcBox(){show(`<h3 style="margin:12px 0 4px">${tt('เข้าสู่ระบบด้วย Discord','Log in with Discord')}</h3><p class="sub">${tt('ใช้ Discord เพื่อลงขายสินค้าหรือติดต่อผู้ขาย รูปโปรไฟล์จะใช้รูป Discord ของคุณ และต้องตั้งชื่อตัวละครก่อนใช้งาน','Use Discord to list items or contact sellers. Your Discord picture becomes your profile picture, and you set your character name first.')}</p><button class="mini" data-act="dclogin">${tt('เข้าสู่ระบบด้วย Discord','Log in with Discord')}</button>`)}
 async function dcLogin(){
  try{localStorage.setItem('ay_ret',JSON.stringify({p:page,c:tcat,n:gateNext||''}))}catch(e){}
- const r=await sb.auth.signInWithOAuth({provider:'discord',options:{redirectTo:location.origin+location.pathname}});
+ const r=await sb.auth.signInWithOAuth({provider:'discord',options:{redirectTo:location.origin+'/'}});
  if(r.error){try{localStorage.removeItem('ay_ret')}catch(e){}toast(tt('เข้าสู่ระบบ Discord ไม่สำเร็จ: ','Discord login failed: ')+r.error.message)}
 }
 function ignBox(){
@@ -1304,6 +1305,9 @@ setInterval(async()=>{
  if(page!=='au'||!sb||document.hidden||auReveal||auBusy)return;
  const ch=await auLoad();if(ch&&!auReveal&&!document.activeElement.matches('input,select'))render();
 },8000);
+const RT={'guild-league':['war','gl'],'gl':['war','gl'],'wars':['war','gl'],'war':['war','gl'],'overrun':['war','ov'],'woe':['war','ov'],'overrun-woe':['war','ov'],'war-plan':['wp'],'warplan':['wp'],'plan':['wp'],'search':['me'],'find':['me'],'leave':['lv'],'report-leave':['lv'],'trade':['tr'],'market':['tr'],'auction':['au'],'designed':['au'],'designed-auction':['au'],'designedauction':['au'],'designated-auction':['au'],'stats':['st'],'profile':['mem','pf'],'members':['mem','list'],'roster':['mem','list'],'class':['mem','cls'],'rename':['mem','rn']};
+function routeFromUrl(){const n=x=>String(x||'').toLowerCase().replace(/[\s_]+/g,'-').replace(/^-+|-+$/g,'');let h='',seg='';try{h=decodeURIComponent(location.hash||'').replace(/^#\/?/,'');seg=decodeURIComponent(location.pathname).split('/').filter(Boolean)[0]||''}catch(e){}
+ const r=RT[n(h)]||RT[n(seg)];if(!r)return false;page=r[0];if(page==='war')tab=r[1];if(page==='mem')msub=r[1];if(page==='tr')tcat='all';return true}
 const auRoute=()=>/^#(auction|designed-?auction)$/i.test(decodeURIComponent(location.hash))||/\/(auction|designed[-_ ]*auction)\/?$/i.test(decodeURIComponent(location.pathname));
 window.addEventListener('hashchange',()=>{if(/^#(auction|designed)/i.test(location.hash))page='au';else if(page==='au')page='war';render()});
 
@@ -1388,11 +1392,11 @@ function applyLang(){
 }
 function setLang(l){if(l!=='th'&&l!=='en')return;lang=l;try{localStorage.setItem('ay_lang',l)}catch(e){}applyLang();render()}
 (async()=>{
- if(auRoute())page='au';else if(/^#(trade|market)$/i.test(location.hash)){page='tr';tcat='all'}
+ routeFromUrl();
  applyLang();
  if(CFG.url.startsWith('http')&&window.supabase){
   sb=supabase.createClient(CFG.url,CFG.key,{auth:{flowType:'pkce',detectSessionInUrl:true}});
-  await checkEditor();await load();await postLogin();if(page==='tr')await trLoad();
+  await checkEditor();await load();await postLogin();if(page==='tr')await trLoad();if(page==='mem')pfLoad();
   setInterval(()=>{if(!edit&&!document.hidden)load()},60000);
  }
  render();
